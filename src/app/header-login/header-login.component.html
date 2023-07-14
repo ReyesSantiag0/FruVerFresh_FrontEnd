@@ -1,0 +1,23 @@
+<div class="container ">
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="col-md-3 mb-2 mb-md-0">
+      <a routerLink="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+        <img src="../../assets/LogotipoFruVerFresh.png" width="25%" alt="img">
+      </a>
+    </div>
+
+    <form class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" (ngSubmit)="buscarProducto()"
+      #buscarForm="ngForm">
+      <input type="search" class="form-control form-control-dark" id="nombre_producto" placeholder="Buscar" required
+        [(ngModel)]="nombre_producto" name="nombre_producto">
+    </form>
+
+    <div class="col-md-3 text-end">
+      <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal"
+        data-bs-target="#modalLogin">Iniciar sesión</button>
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+        data-bs-target="#modalRegistro">Registrarse</button>
+    </div>
+  </header>
+</div>

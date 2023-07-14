@@ -1,0 +1,99 @@
+<app-header-client></app-header-client>
+<main>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container" style="display: flex; justify-content: center;">
+      <div class="card mb-3" style="max-width: 650px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ producto.foto_producto}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h1 class="card-title text-success">{{ producto.nombre_producto}}</h1>
+              <p class="card-text">{{ producto.detalle_producto}}
+              </p>
+              <p class="card-text"><small class="text-danger">Precio</small></p>
+              <h1 class="text-warning">$ {{ producto.precio_producto}}</h1>
+              <div class="py-3">
+                <form class="row g-3 ">
+                  <div class="col-8 text-center">
+                    <input class="form-control form-control-sm" type="number" required
+                      [(ngModel)]="pedido.cantidad_pedido" name="cantidad_pedido">
+                  </div>
+                  <div class="col text-center">
+                    <button type="button" class="btn btn-sm btn-success" type="button" data-bs-toggle="modal"
+                      data-bs-target="#modalFormComprar">COMPRAR</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalFormComprar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-0 border-bottom-0 py-1">
+        <img src="../../assets/LogotipoFruVerFresh.png" width="25%" alt="img">
+        <h1 class="fw-bold mb-0 fs-2 p-5">Su Compra</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form (ngSubmit)="comprar()" #FormCompra="ngForm">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control  rounded-3" id="nombre_cliente_pedido" placeholder="Nombre"
+              name="nombre_cliente_pedido" required [(ngModel)]="pedido.nombre_cliente_pedido">
+            <label for="floatingInput">Nombre</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" id="apellido_cliente_pedido" placeholder="Apellido"
+              name="apellido_cliente_pedido" required [(ngModel)]="pedido.apellido_cliente_pedido">
+            <label for="floatingInput">Apellido</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control rounded-3" id="telefono_cliente_pedido" placeholder="Teléfono"
+              name="telefono_cliente_pedido" required [(ngModel)]="pedido.telefono_cliente_pedido">
+            <label for="floatingInput">Teléfono</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-3" id="correo_cliente_pedido" required
+              placeholder="Correo electrónico" name="correo_cliente_pedido" required
+              [(ngModel)]="pedido.correo_cliente_pedido">
+            <label for="floatingInput">Correo electrónico</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" id="direccion_cliente_pedido" required
+              placeholder="Dirección" name="direccion_cliente_pedido" required
+              [(ngModel)]="pedido.direccion_cliente_pedido">
+            <label for="floatingInput">Dirección</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" id="nombre_producto" name="nombre_producto" required
+              [(ngModel)]="producto.nombre_producto">
+            <label for="floatingInput">Producto</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control rounded-3" id="cantidad_pedido" name="cantidad_pedido" required
+              [(ngModel)]="pedido.cantidad_pedido">
+            <label for="floatingInput">Cantidad</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control rounded-3" id="precio_pedido" name="precio_pedido" required
+              [(ngModel)]="producto.precio_producto">
+            <label for="floatingInput">Precio</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit"
+            [disabled]="!FormCompra.form.valid">Comprar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

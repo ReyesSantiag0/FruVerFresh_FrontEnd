@@ -1,0 +1,29 @@
+<app-header-client></app-header-client>
+<main>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" *ngFor="let producto of productos | async">
+          <div class="card h-100">
+            <img src="{{ producto.foto_producto}}" alt="img producto" width="35%" height="45%" class="py-3"
+              style="display: block; margin-left: auto; margin-right: auto;">
+            <div class="card-body py-0">
+              <h1 class="card-title text-success">{{ producto.nombre_producto}}</h1>
+              <h1 class="text-center text-warning">${{ producto.precio_producto}}</h1>
+            </div>
+            <div class="py-3">
+              <form class="row g-3">
+                <div class="text-center">
+                  <button type="button" class="btn btn-sm btn-success" type="button"
+                    [routerLink]="['/home-cliente/compras/', producto.id_producto]">VER
+                    PRODUCTO</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>

@@ -1,0 +1,114 @@
+<app-header-login></app-header-login>
+<main>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" *ngFor="let producto of productos | async">
+          <div class="card h-100">
+            <img src="{{ producto.foto_producto}}" alt="img producto" width="35%" height="45%" class="py-3"
+              style="display: block; margin-left: auto; margin-right: auto;">
+            <div class="card-body py-0">
+              <h1 class="card-title text-success">{{ producto.nombre_producto}}</h1>
+              <h1 class="text-center text-warning">${{ producto.precio_producto}}</h1>
+            </div>
+            <div class="py-3">
+              <form class="row g-3" (ngSubmit)="anadirSinRegistro()">
+                <div class="text-center">
+                  <button type="button" class="btn btn-sm btn-success" type="submit">VER PRODUCTO</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <img src="../../assets/LogotipoFruVerFresh.png" width="25%" alt="img producto">
+        <h1 class="fw-bold mb-0 fs-2 p-4">Inicia sesión</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-5 pt-0">
+        <form (ngSubmit)="autenticar()" #usuarioForm="ngForm">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-3" id="correo_usuarioAut" placeholder="freverfresh.com"
+              required [(ngModel)]="correo_usuarioAut" name="correo_usuarioAut">
+            <label for="floatingInput">Correo electrónico</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-3" id="contrasena_usuarioAut" placeholder="Contraseña"
+              required [(ngModel)]="contrasena_usuarioAut" name="contrasena_usuarioAut">
+            <label for="floatingPassword">Contraseña</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit"
+            [disabled]="!usuarioForm.form.valid">Iniciar sesión</button>
+          <hr class="my-4">
+          <h2 class="fs-5 fw-bold mb-3">¿No tienes una cuenta?</h2>
+          <button class="w-100 py-2 mb-2 btn btn-outline-warning rounded-3" type="button" data-bs-toggle="modal"
+            data-bs-target="#modalRegistro">
+            Regístrate grátis
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-0 border-bottom-0 py-1">
+        <img src="../../assets/LogotipoFruVerFresh.png" width="25%" alt="img">
+        <h1 class="fw-bold mb-0 fs-2 p-5">Registrate</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form (ngSubmit)="onSubmit()" #usuarioRegistroForm="ngForm">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control  rounded-3" id="nombre_usuario" placeholder="Nombre" required
+              [(ngModel)]="usuario.nombre_usuario" name="nombre_usuario" autocomplete="">
+            <label for="floatingInput">Nombre</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" id="apellido_usuario" placeholder="Apellido" required
+              [(ngModel)]="usuario.apellido_usuario" name="apellido_usuario" autocomplete="">
+            <label for="floatingPassword">Apellido</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control rounded-3" id="edad_usuario" placeholder="Edad" required
+              [(ngModel)]="usuario.edad_usuario" name="edad_usuario" autocomplete="">
+            <label for="floatingInput">Edad</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control rounded-3" id="telefono_usuario" placeholder="Teléfono" required
+              [(ngModel)]="usuario.telefono_usuario" name="telefono_usuario" autocomplete="">
+            <label for="floatingPassword">Teléfono</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-3" id="correo_usuario" placeholder="Correo electrónico"
+              required [(ngModel)]="usuario.correo_usuario" name="correo_usuario" autocomplete="">
+            <label for="floatingInput">Correo electrónico</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-3" id="contrasena_usuario" placeholder="Contraseña"
+              required [(ngModel)]="usuario.contrasena_usuario" name="contrasena_usuario" autocomplete="">
+            <label for="floatingPassword">Contraseña</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit"
+            [disabled]="!usuarioRegistroForm.form.valid">Registrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
